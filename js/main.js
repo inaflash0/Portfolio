@@ -285,3 +285,36 @@
   });
 
 })()
+
+
+function tempSendEmail() {
+  console.log("Checking email sending");
+  // Parsing Values
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let phone = document.getElementById("phone").value;
+  let message = document.getElementById("message").value;
+
+  console.log("Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nMessage: " + message);
+  
+  Email.send({
+    Host: "smtp.elasticemail.com",
+    Username: "sj902483@gmail.com",
+    Password: "7CE797F4968AEE517391F26834DA7FF09E85",
+    // To: "inflash0@gmail.com",
+    To: "sj902483@gmail.com",
+    From: "sj902483@gmail.com",
+    Subject: "New Client: Service Related Enquiry",
+    Body:
+      "Name: " +
+      name +
+      "<br> Email: " +
+      email +
+      "<br> Phone: " +
+      phone +
+      " <br> Subject: " +
+      name +
+      "<br> Message: " +
+      message,
+  }).then((message) => alert(message));
+}
