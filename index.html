@@ -806,13 +806,18 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form onsubmit="sendEmail(); reset(); return false;" class="php-email-form" action="/submit-form"
+              method="post">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
                   <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="col-md-12 form-group mt-3 mt-md-0">
+                  <input type="phone" class="form-control" name="phone" id="phone" placeholder="Your Contact Number"
+                    required>
                 </div>
               </div>
               <div class="form-group mt-3">
@@ -826,7 +831,7 @@
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" value="Submit">Send Message</button></div>
             </form>
 
           </div>
@@ -925,6 +930,26 @@
 
   <!-- Template Main JS File -->
   <script src="js/main.js"></script>
+
+  <!-- Send email  -->
+  <script src="https://smtpjs.com/v3/smtp.js">
+  </script>
+
+  <script>
+    function sendEmail() {
+      Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "sj902483@gmail.com",
+        Password: "7CE797F4968AEE517391F26834DA7FF09E85",
+        To: 'inflash0@gmail.com',
+        From: document.getElementById("email").value,
+        Subject: "New Client: Service Related Enquiry",
+        Body: "Name: " + document.getElementById("name").value + "<br> Email: " + document.getElementById("email").value + "<br> Phone: " + document.getElementById("phone").value + " <br> Subject: " + document.getElementById("subject").value + "<br> Message: " + document.getElementById("message").value
+      }).then(
+        message => alert(message)
+      );
+    } 
+  </script>
 </body>
 
 </html>
